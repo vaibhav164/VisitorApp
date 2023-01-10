@@ -6,6 +6,7 @@ import FormInput from '../FormInput/FormInput';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {Text} from 'react-native-paper';
+import messaging from '@react-native-firebase/messaging';
 const SignupSchema = Yup.object().shape({
   Email: Yup.string().email('Invalid email').required('Email is Required'),
   Password: Yup.string()
@@ -14,6 +15,16 @@ const SignupSchema = Yup.object().shape({
     .required('Password is Required'),
 });
 const LoginForm = ({navigation}) => {
+  async function requestUserPermission() {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log('Authorization status:', authStatus);
+    }
+  }
   const handleSubmit = val => {
     const ValidUser = users.filter(item => {
       return val.Email === item.userEmail;
@@ -22,6 +33,7 @@ const LoginForm = ({navigation}) => {
       console.log('Invalid User');
     } else {
       console.log('User inputs are as ', ValidUser);
+      requestUserPermission();
       navigation.navigate('Home');
     }
   };
