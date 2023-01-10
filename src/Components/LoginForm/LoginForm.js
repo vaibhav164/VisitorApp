@@ -24,8 +24,6 @@ const LoginForm = ({navigation}) => {
       console.log('User inputs are as ', ValidUser);
       navigation.navigate('Home');
     }
-    // console.log('vlause to be submited', val);
-    // navigation.navigate('Home');
   };
   return (
     <Formik

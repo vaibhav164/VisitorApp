@@ -5,22 +5,29 @@ import SigninScreen from './Authentication/SignInScreen';
 import VisitorScreen from './MainScreen/VisitorScreen';
 import SignUpScreen from './Authentication/SignUpScreen';
 
-const Stack = createNativeStackNavigator();
-
-const RootNavigator = () => {
+const MainStack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator();
+export const RootNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="SignIn" component={SigninScreen} />
-        <Stack.Screen
+      <MainStack.Navigator screenOptions={{headerShown: false}}>
+        <MainStack.Screen
           options={{title: 'Home'}}
           name="Home"
           component={VisitorScreen}
         />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
-      </Stack.Navigator>
+      </MainStack.Navigator>
     </NavigationContainer>
   );
 };
 
-export default RootNavigator;
+export const AuthNavigator = () => {
+  return (
+    <NavigationContainer>
+      <AuthStack.Navigator screenOptions={{headerShown: false}}>
+        <AuthStack.Screen name="SignIn" component={SigninScreen} />
+        <AuthStack.Screen name="SignUp" component={SignUpScreen} />
+      </AuthStack.Navigator>
+    </NavigationContainer>
+  );
+};

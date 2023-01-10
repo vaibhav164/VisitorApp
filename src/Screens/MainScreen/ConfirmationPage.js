@@ -4,7 +4,7 @@ import {DeviceHeight, DeviceWidth} from '../../Utils/Constants';
 import {Badge} from 'react-native-paper';
 import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
 import VisitorForm from '../../Components/VisitorForm/VisitorForm';
-const VisitorScreen = ({navigation}) => {
+const ConfirmationScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -75,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default VisitorScreen;
+export default ConfirmationScreen;

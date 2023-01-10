@@ -1,27 +1,57 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {DeviceHeight, DeviceWidth} from '../../Utils/Constants';
+import {DeviceHeight, DeviceWidth, users} from '../../Utils/Constants';
 import SubmitButton from '../Button/SubmitButton';
 import FormInput from '../FormInput/FormInput';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Text} from 'react-native-paper';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
+const SignupSchema = Yup.object().shape({
+  Note: Yup.string().required('Required Field'),
+});
 const VisitorForm = ({navigation}) => {
-  const handlePress = () => {
-    console.log('Vlaues of Button');
+  const handlePress = async val => {
+    try {
+      const jsonValue = JSON.stringify(val);
+      await AsyncStorage.setItem('Visitor_note', jsonValue);
+      console.log('Values of Note', await AsyncStorage.getItem('Visitor_note'));
+    } catch (e) {
+      console.log('Values', val);
+    }
   };
   return (
-    <View style={styles.container}>
-      <FormInput label="Reason of Visit" multiline={true} />
-      <View>
-        <TouchableOpacity style={styles.buttonIconBox}>
-          <View style={styles.button}>
-            <Text style={styles.notificationText}>Notify EveryOne</Text>
+    <Formik
+      initialValues={{
+        Note: '',
+      }}
+      validationSchema={SignupSchema}
+      onSubmit={handlePress}>
+      {props => (
+        <View style={styles.container}>
+          <FormInput
+            label="Reason of Visit"
+            value={props.values.Note}
+            onChangeText={props.handleChange('Note')}
+            multiline={true}
+          />
+          <View>
+            <TouchableOpacity style={styles.buttonIconBox}>
+              <View style={styles.button}>
+                <Text style={styles.notificationText}>Notify EveryOne</Text>
+              </View>
+              <MaterialIcons
+                name="notifications-on"
+                size={25}
+                color="#6D67E4"
+              />
+            </TouchableOpacity>
+            <SubmitButton onPress={props.handleSubmit} title="Submit" />
           </View>
-          <MaterialIcons name="notifications-on" size={25} color="#6D67E4" />
-        </TouchableOpacity>
-        <SubmitButton onPress={handlePress} title="Submit" />
-      </View>
-    </View>
+        </View>
+      )}
+    </Formik>
   );
 };
 
