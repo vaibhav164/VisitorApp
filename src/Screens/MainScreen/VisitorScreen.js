@@ -1,31 +1,27 @@
 import React from 'react';
-import {
-  Image,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {DeviceHeight, DeviceWidth, logoUrl} from '../../Utils/Constants';
+import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {DeviceHeight, DeviceWidth} from '../../Utils/Constants';
+import {Badge} from 'react-native-paper';
 import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
+import VisitorForm from '../../Components/VisitorForm/VisitorForm';
 const VisitorScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.HeaderBackbutton}
-        onPress={() => {
-          navigation.goBack();
-        }}>
-        <MaterialIcon name="arrow-back-ios" size={20} />
-      </TouchableOpacity>
-      <View style={styles.topContainer}>
-        <Image
-          source={{
-            uri: logoUrl,
-          }}
-          style={styles.logo}
-        />
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.HeaderBackbutton}
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <MaterialIcon name="arrow-back-ios" size={20} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Badge size={40} children="VS" />
+        </TouchableOpacity>
       </View>
+      <ScrollView style={styles.topContainer}>
+        <VisitorForm />
+      </ScrollView>
     </View>
   );
 };
@@ -35,8 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   topContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1,
   },
   logo: {
     height: 200,
@@ -67,9 +62,16 @@ const styles = StyleSheet.create({
     marginTop: 100,
   },
   HeaderBackbutton: {
+    justifyContent: 'center',
     alignItems: 'center',
     width: DeviceWidth * 0.2,
     height: DeviceHeight * 0.06,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingRight: '5%',
   },
 });
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import {Image, StyleSheet, View, Text} from 'react-native';
+import {Image, StyleSheet, View, Text, ScrollView} from 'react-native';
 import LoginForm from '../../Components/LoginForm/LoginForm';
 import {logoUrl} from '../../Utils/Constants';
 
 const SigninScreen = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.welcomeText}>Wecome to Visitor</Text>
         <Image
@@ -21,11 +21,10 @@ const SigninScreen = ({navigation}) => {
         <Text
           style={styles.colorText}
           onPress={() => navigation.navigate('SignUp')}>
-          {' '}
           SignUp
         </Text>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

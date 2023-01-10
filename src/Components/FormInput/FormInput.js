@@ -9,8 +9,10 @@ const FormInput = props => {
       keyboardType={props.keyboardType}
       label={props.label}
       underLineColor="white"
+      autoCapitalize={props.autoCapitalize}
       secureTextEntry={props.secureTextEntry}
-      //   onChangeText={text => console.log(text)}
+      onChangeText={props.onChangeText}
+      multiline={props.multiline}
     />
   );
 };
@@ -18,6 +20,7 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#C0DEFF',
     underLineColor: '#EB455F',
+    marginVertical: 5,
   },
 });
 export default FormInput;

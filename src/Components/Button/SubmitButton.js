@@ -5,6 +5,7 @@ import {Button, Text} from 'react-native-paper';
 const SubmitButton = props => {
   return (
     <Button
+      icon={props.icon}
       style={styles.buttonContainer}
       mode="contained"
       onPress={props.onPress}>
