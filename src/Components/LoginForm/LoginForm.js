@@ -13,7 +13,7 @@ const SignupSchema = Yup.object().shape({
     .min(8, 'Shuold have atleast 8 characters')
     .required('Password is Required'),
 });
-const LoginForm = ({navigation}) => {
+const LoginForm = ({formValue, navigation}) => {
   const handleSubmit = val => {
     const ValidUser = users.filter(item => {
       return val.Email === item.userEmail;
@@ -25,12 +25,13 @@ const LoginForm = ({navigation}) => {
       navigation.navigate('Home');
     }
   };
+  const initialValue = {
+    Email: '',
+    Password: '',
+  };
   return (
     <Formik
-      initialValues={{
-        Email: '',
-        Password: '',
-      }}
+      initialValues={initialValue}
       validationSchema={SignupSchema}
       onSubmit={handleSubmit}>
       {props => (

@@ -4,6 +4,10 @@ import LoginForm from '../../Components/LoginForm/LoginForm';
 import {logoUrl} from '../../Utils/Constants';
 
 const SigninScreen = ({navigation}) => {
+  const inintailValue = {
+    Email: '',
+    password: '',
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.topContainer}>
@@ -15,7 +19,7 @@ const SigninScreen = ({navigation}) => {
           style={styles.logo}
         />
       </View>
-      <LoginForm navigation={navigation} />
+      <LoginForm formValue={inintailValue} navigation={navigation} />
       <View style={styles.signupTextBox}>
         <Text style={styles.accountText}>Don't have an account?</Text>
         <Text

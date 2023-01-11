@@ -8,14 +8,7 @@ const VisitorScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.HeaderBackbutton}
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <MaterialIcon name="arrow-back-ios" size={20} />
-        </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.HeaderBackbutton}>
           <Badge size={40} children="VS" />
         </TouchableOpacity>
       </View>
@@ -63,8 +56,9 @@ const styles = StyleSheet.create({
   },
   HeaderBackbutton: {
     justifyContent: 'center',
+    alignSelf: 'flex-end',
     alignItems: 'center',
-    width: DeviceWidth * 0.2,
+    width: DeviceWidth * 0.95,
     height: DeviceHeight * 0.06,
   },
   header: {

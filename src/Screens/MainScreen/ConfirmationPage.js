@@ -1,16 +1,7 @@
 import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Image,
-  Text,
-} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Image, Text} from 'react-native';
 import {DeviceHeight, DeviceWidth, DoneTickLogo} from '../../Utils/Constants';
-import {Badge} from 'react-native-paper';
 import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
-import VisitorForm from '../../Components/VisitorForm/VisitorForm';
 import SubmitButton from '../../Components/Button/SubmitButton';
 const ConfirmationScreen = ({navigation}) => {
   return (
@@ -88,7 +79,6 @@ const styles = StyleSheet.create({
   },
   header: {
     justifyContent: 'center',
-    // alignItems: 'center',
     paddingRight: '5%',
   },
   button: {
