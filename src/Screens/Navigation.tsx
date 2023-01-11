@@ -26,6 +26,11 @@ export const AuthNavigator = () => {
     <NavigationContainer>
       <AuthStack.Navigator screenOptions={{headerShown: false}}>
         <AuthStack.Screen name="SignIn" component={SigninScreen} />
+        <MainStack.Screen
+          options={{title: 'Home'}}
+          name="Home"
+          component={VisitorScreen}
+        />
         <AuthStack.Screen name="SignUp" component={SignUpScreen} />
       </AuthStack.Navigator>
     </NavigationContainer>
