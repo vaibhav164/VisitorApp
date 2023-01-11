@@ -17,6 +17,7 @@ const VisitorForm = ({navigation}) => {
       const jsonValue = JSON.stringify(val);
       await AsyncStorage.setItem('Visitor_note', jsonValue);
       console.log('Values of Note', await AsyncStorage.getItem('Visitor_note'));
+      navigation.navigate('ConfirmationScreen');
     } catch (e) {
       console.log('Values', val);
     }

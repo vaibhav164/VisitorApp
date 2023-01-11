@@ -1,27 +1,39 @@
 import React from 'react';
-import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {DeviceHeight, DeviceWidth} from '../../Utils/Constants';
+import {
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Image,
+  Text,
+} from 'react-native';
+import {DeviceHeight, DeviceWidth, DoneTickLogo} from '../../Utils/Constants';
 import {Badge} from 'react-native-paper';
 import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
 import VisitorForm from '../../Components/VisitorForm/VisitorForm';
+import SubmitButton from '../../Components/Button/SubmitButton';
 const ConfirmationScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.HeaderBackbutton}
+        onPress={() => {
+          navigation.goBack();
+        }}>
+        <MaterialIcon name="arrow-back-ios" color="#fff" size={20} />
+      </TouchableOpacity>
       <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.HeaderBackbutton}
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <MaterialIcon name="arrow-back-ios" size={20} />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Badge size={40} children="VS" />
-        </TouchableOpacity>
+        <Image source={{uri: DoneTickLogo}} style={styles.logo} />
+        <Text style={styles.welcomeText}>Greate !!! Your Note is Added</Text>
+        <View style={styles.button}>
+          <SubmitButton
+            onPress={() => {
+              navigation.navigate('SignIn');
+            }}
+            title="Go To Login"
+          />
+        </View>
       </View>
-      <ScrollView style={styles.topContainer}>
-        <VisitorForm navigation={navigation} />
-      </ScrollView>
     </View>
   );
 };
@@ -36,13 +48,16 @@ const styles = StyleSheet.create({
   logo: {
     height: 200,
     width: 250,
-    marginVertical: 10,
+    marginTop: DeviceHeight * 0.2,
+    alignSelf: 'center',
   },
   welcomeText: {
     flexWrap: 'wrap',
+    textAlign: 'center',
     fontSize: 30,
     color: '#3A4F7A',
     fontWeight: '700',
+    marginBottom: 10,
   },
   colorText: {
     fontSize: 16,
@@ -64,14 +79,21 @@ const styles = StyleSheet.create({
   HeaderBackbutton: {
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'flex-start',
+    marginLeft: 10,
+    backgroundColor: '#6D67E4',
+    borderRadius: 20,
     width: DeviceWidth * 0.2,
-    height: DeviceHeight * 0.06,
+    height: DeviceHeight * 0.05,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: 'center',
+    // alignItems: 'center',
     paddingRight: '5%',
+  },
+  button: {
+    alignSelf: 'center',
+    width: DeviceWidth * 0.8,
   },
 });
 
