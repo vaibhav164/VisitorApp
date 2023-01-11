@@ -1,12 +1,32 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, View, Text, ScrollView} from 'react-native';
 import LoginForm from '../../Components/LoginForm/LoginForm';
-import {logoUrl} from '../../Utils/Constants';
-
+import {logoUrl, users} from '../../Utils/Constants';
+import {useFocusEffect} from '@react-navigation/native';
 const SigninScreen = ({navigation}) => {
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
+  useEffect(() => {
+    setEmail('');
+    setPassword('');
+  }, [Email, Password]);
   const inintailValue = {
-    Email: '',
-    password: '',
+    Email: Email,
+    password: Password,
+  };
+  useFocusEffect(() => {
+    (inintailValue.Email = ''), (inintailValue.Password = '');
+  });
+  const handleSubmit = val => {
+    const ValidUser = users.filter(item => {
+      return val.Email === item.userEmail;
+    });
+    if (ValidUser.length == 0) {
+      console.log('Invalid User');
+    } else {
+      console.log('User inputs are as ', ValidUser);
+      navigation.navigate('Home');
+    }
   };
   return (
     <ScrollView style={styles.container}>
@@ -19,7 +39,11 @@ const SigninScreen = ({navigation}) => {
           style={styles.logo}
         />
       </View>
-      <LoginForm formValue={inintailValue} navigation={navigation} />
+      <LoginForm
+        onSubmit={handleSubmit}
+        formValue={inintailValue}
+        navigation={navigation}
+      />
       <View style={styles.signupTextBox}>
         <Text style={styles.accountText}>Don't have an account?</Text>
         <Text

@@ -2,7 +2,6 @@ import React from 'react';
 import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {DeviceHeight, DeviceWidth} from '../../Utils/Constants';
 import {Badge} from 'react-native-paper';
-import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
 import VisitorForm from '../../Components/VisitorForm/VisitorForm';
 const VisitorScreen = ({navigation}) => {
   return (
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'flex-end',
     alignItems: 'center',
-    width: DeviceWidth * 0.95,
+    width: DeviceWidth * 0.9,
     height: DeviceHeight * 0.06,
   },
   header: {
